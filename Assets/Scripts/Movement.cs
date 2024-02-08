@@ -12,6 +12,7 @@ public class Movement : MonoBehaviour
     [SerializeField] ParticleSystem mainBooster;
     [SerializeField] ParticleSystem leftBooster;
     [SerializeField] ParticleSystem rightBooster;
+    private int yellowAmount;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -97,6 +98,16 @@ public class Movement : MonoBehaviour
         else
         {
             aus.Stop();
+        }
+    }
+
+    public void ObjCollectFly(GameObject obj, ObjType objType)
+    {
+        if (objType == ObjType.Yellow)
+        {
+            yellowAmount++;
+            UIManager.instance.YellowAmountTextChange(yellowAmount);
+            obj.SetActive(false);
         }
     }
 }
